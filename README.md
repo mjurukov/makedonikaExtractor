@@ -1,15 +1,29 @@
-# Makedonika EPUB Downloader
+# makedonika-epub
 
-## Requirements
+Download books from [makedonika.mk](http://www.makedonika.mk) as EPUB files.
 
-- `requests` library
+## Setup
 
-Install the dependency:
-
-```bash
+```
 pip install requests
 ```
-## How to download
- * Click on a book you would like to download and copy the title
- * Hover over the book cover and copy the ID
- * Input the desired .epub filename
+
+## Usage
+
+Find the book ID from the site URL (e.g. `idBook=15337`) and run:
+
+```
+python makedonika_epub.py 15337
+```
+
+The output file is named after the book title automatically. To specify a custom filename:
+
+```
+python makedonika_epub.py 15337 -o betoven.epub
+```
+
+## How it works
+
+1. Fetches the book's metadata page to extract the title
+2. Downloads all EPUB assets (chapters, stylesheets, images, fonts) from the server
+3. Packages them into a valid `.epub` file
